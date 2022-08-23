@@ -10,7 +10,11 @@ Scripts for TTF optimizations
 
 ## Running the main script
 
-python ttf_optimizer.py -i <id> -d <date> -i <output file> 
+python ttf_optimizer.py -i id -d date -i output_file 
+
+Example:
+python ttf_optimizer.py -i 34 -d 20220731 -i "weights.csv" 
+
 
 Run 
 python ttf_optimizer.py -h       for help
