@@ -10,7 +10,7 @@ from tqdm import tqdm
 from optimizer import GainyOptimizer
 import sys
 import getopt
-
+from ttf_filtering import FilterTTF
 
 
 
@@ -42,6 +42,11 @@ def TTFOptimization(ttf_id, dt_today, params):
     # Get tickers in the TTF
     tickers = list(GetTTFComposition_byID(ttf_id).ticker.unique())
 
+    # Filter ttfs
+    post_filter = FilterTTF(tickers, verbatim=False)
+    tickers = [ticker for ticker in post_filter ]
+
+
     # Run optimizer
     optimizer = GainyOptimizer(tickers, dt_today, benchmark='SPY', lookback=9)
     opt_res = optimizer.OptimizePortfolioRiskBudget(params=params)
@@ -52,7 +57,7 @@ def TTFOptimization(ttf_id, dt_today, params):
 
 
 if __name__=='__main__':
-    params = {'bounds': (0.01, 0.3), 'penalties': {'hs': 0.05, 'hi': 0.05, 'b': 0.05}}
+    params = {'bounds': (0.01, 0.3), 'penalties': {'hs': 0.005, 'hi': 0.005, 'b': 0.05}}
     
     
     arg_help = "{0} -i <id> -d <date> -o <output>".format(sys.argv[0])

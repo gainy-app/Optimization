@@ -27,7 +27,7 @@ class GainyOptimizer():
         '''
 
         if (tickers is None):
-            ticker=self.tickers
+            tickers=self.tickers
 
         tickers = tickers + [self.benchmark]
 
@@ -218,14 +218,7 @@ class GainyOptimizer():
     
     def OptimizePortfolioRiskBudget(self, params=None, override_numerator=None, verbatim=False):
         '''
-        Portfolio optimization, Sharpe-like
-        Inputs:
-        - cov - covariance matrix
-        - industries - industries map indexed by ticker
-        - betas - stocks betas indexed by tickers
-        - target_beta - target portfolio beta
-        - bounds - tuple. Stock minimum and maximum weight
-        - verbatim - if True prints out all optimization coefficients and optimization output
+        Portfolio optimization,  Risk budget
         
         Pentalties - penalty coefficients dictionary
             - hs - HHI index penalty for stocks
@@ -363,8 +356,6 @@ class GainyOptimizer():
 
 
 if __name__=='__main__':
-
-    
     test = GainyOptimizer(['AAPL', 'GOOG', 'TSLA', 'ABNB'], "2021-01-10")
 
     test.OptimizePortfolioRiskBudget(verbatim=True)
