@@ -105,7 +105,7 @@ if __name__=='__main__':
     opt_res.columns = ['symbol', 'weight']
     opt_res['date'] = dt_today
     opt_res['ttf_id'] = ttf_id
-    opt_res['opimized_at'] = datetime.now()
+    opt_res['optimized_at'] = datetime.now()
 
     opt_res.to_csv(arg_output, index=False, mode='a', header=(not os.path.exists(arg_output)))
 
