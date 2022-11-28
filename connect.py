@@ -145,6 +145,7 @@ def GetPrices(tickers, start, end):
         SELECT code as ticker, date, adjusted_close as price
         FROM eod_historical_prices
         WHERE code IN {tickers} AND
+        date>=first_date AND
         date between '{start}' AND '{end}'
     """
     

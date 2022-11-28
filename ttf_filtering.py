@@ -35,6 +35,11 @@ def FilterTTF(tickers, minMC=100, minVolume=2, minPrice=1, verbatim=False):
         df.Flag = df.Flag.str.replace('\[nan\]-','')
         print(df)
 
+    # Remove untradable
+    trade = pd.read_csv("./Instruments List_PROD_NOV2022.csv")
+    trade.Symbol = trade.Symbol.str.replace(".","-", regex=True)
+    non_tradable = set(df.ticker) - set(trade.Symbol)
+    df = df.loc[~df.ticker.isin(non_tradable)]
 
     out = df.loc[df.Flag.isna(), 'ticker']
     return out
